@@ -1,2 +1,4 @@
 # get_cosmopower_emus
-utility package to automatically download emulators
+Utility package to automatically download emulators
+
+(This is a depency of classy_sz.)
