@@ -18,7 +18,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="get_cosmopower_emus",  # This is the name of your package
-    version="0.0.7",  # Package version
+    version="0.0.8",  # Package version
 
     packages=find_packages(),
     cmdclass={
