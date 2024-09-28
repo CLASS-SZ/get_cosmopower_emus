@@ -23,6 +23,15 @@ def set_cosmopower_env(path):
     os.environ["PATH_TO_COSMOPOWER_ORGANIZATION"] = path
     print(f"PATH_TO_COSMOPOWER_ORGANIZATION is set to {path}")
 
+def delete_pkl_files(directory):
+    """Recursively find and delete all .pkl files in the directory."""
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".pkl"):
+                file_path = os.path.join(root, file)
+                print(f"Deleting: {file_path}")
+                os.remove(file_path)
+
 def set():
     # Check if PATH_TO_COSMOPOWER_ORGANIZATION is already set
     path_to_cosmopower = os.getenv("PATH_TO_COSMOPOWER_ORGANIZATION")
@@ -63,5 +72,10 @@ def set():
             repo_url = os.path.join(BASE_URL, f"{repo}.git")
             subprocess.run(["git", "clone", repo_url])
 
-        # After cloning, set the environment variable
+        # After cloning, delete all .pkl files
+        for repo in EXPECTED_REPOS:
+            repo_path = os.path.join(path_to_cosmopower, repo)
+            delete_pkl_files(repo_path)
+
+        # Set the environment variable
         set_cosmopower_env(path_to_cosmopower)
