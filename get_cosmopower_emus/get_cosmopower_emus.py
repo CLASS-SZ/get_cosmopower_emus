@@ -31,7 +31,7 @@ def delete_pkl_files(directory):
                 file_path = os.path.join(root, file)
                 print(f"Deleting: {file_path}")
                 os.remove(file_path)
-
+                
 def set():
     # Check if PATH_TO_COSMOPOWER_ORGANIZATION is already set
     path_to_cosmopower = os.getenv("PATH_TO_COSMOPOWER_ORGANIZATION")
@@ -41,11 +41,19 @@ def set():
         if not path_to_cosmopower.endswith("cosmopower-organization"):
             path_to_cosmopower = os.path.join(path_to_cosmopower, "cosmopower-organization")
         print(f"Using PATH_TO_COSMOPOWER_ORGANIZATION: {path_to_cosmopower}")
+
+        # Check if the directory exists; if not, fall back to default
+        if not os.path.exists(path_to_cosmopower):
+            print(f"Directory {path_to_cosmopower} does not exist. Falling back to default path.")
+            path_to_cosmopower = None
     else:
-        # If not set, default to the user's home directory
+        print("PATH_TO_COSMOPOWER_ORGANIZATION not set.")
+
+    # If no valid path is set or if the path didn't exist, fall back to the default
+    if not path_to_cosmopower:
         home_dir = os.path.expanduser("~")
         path_to_cosmopower = os.path.join(home_dir, "cosmopower-organization")
-        print(f"PATH_TO_COSMOPOWER_ORGANIZATION not set, defaulting to: {path_to_cosmopower}")
+        print(f"Defaulting to: {path_to_cosmopower}")
 
     # Now check if the cosmopower-organization directory exists and contains the expected repositories
     if os.path.exists(path_to_cosmopower) and check_repos_in_dir(path_to_cosmopower):
