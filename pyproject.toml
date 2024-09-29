@@ -8,7 +8,7 @@ license = { text = "MIT" }
 name = "get_cosmopower_emus"
 maintainers = [{name = "Boris Bolliet",email="bb667@cam.ac.uk"}]
 description = "Package to download Cosmopower emulators."
-readme = "https://github.com/CLASS-SZ/.github/blob/main/profile/README.md"
+readme = "README.md"
 
 [project.urls]
 Homepage = "https://github.com/CLASS-SZ"
