@@ -4,7 +4,7 @@
 
 # Function to increment version
 increment_version() {
-  current_version=$(grep -Eo 'version="[^"]*' setup.py | cut -d'"' -f2)
+  current_version=$(grep -Eo 'version = "[^"]*' pyproject.toml | cut -d'"' -f2)
   IFS='.' read -r -a version_parts <<< "$current_version"
 
   major=${version_parts[0]}
@@ -23,8 +23,8 @@ increment_version() {
 
   new_version="$major.$minor.$patch"
 
-  # Update the setup.py with the new version
-  sed -i '' "s/version=\"$current_version\"/version=\"$new_version\"/" setup.py
+  # Update the pyproject.toml with the new version
+  sed -i '' "s/version = \"$current_version\"/version = \"$new_version\"/" pyproject.toml
 }
 
 # Increment the version
@@ -34,8 +34,8 @@ increment_version
 # Remove old build files
 rm -rf build dist *.egg-info
 
-# Build the package
-python setup.py sdist bdist_wheel
+# Build the package using `build`
+python -m build
 
 # Upload the package
 twine upload dist/*

@@ -3,7 +3,8 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-dynamic = ["version"]
+version = "0.0.9"
+license = { text = "MIT" }
 name = "get_cosmopower_emus"
 maintainers = [{name = "Boris Bolliet",email="bb667@cam.ac.uk"}]
 description = "Package to download Cosmopower emulators."
