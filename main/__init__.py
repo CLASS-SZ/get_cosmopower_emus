@@ -1,1 +1,1 @@
-from .get_cosmopower_emus import set
+from .get_cosmopower_emus import set_path

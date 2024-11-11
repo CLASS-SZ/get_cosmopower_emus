@@ -21,7 +21,7 @@ def check_repos_in_dir(directory):
 def set_class_sz_data_env(path):
     """Set the PATH_TO_CLASS_SZ_DATA environment variable."""
     os.environ["PATH_TO_CLASS_SZ_DATA"] = path
-    print(f"PATH_TO_CLASS_SZ_DATA is set to {path}")
+    # print(f"PATH_TO_CLASS_SZ_DATA is set to {path}")
 
 def delete_pkl_files(directory):
     """Recursively find and delete all .pkl files in the directory."""
@@ -32,7 +32,7 @@ def delete_pkl_files(directory):
                 print(f"Deleting: {file_path}")
                 os.remove(file_path)
                 
-def set():
+def set_path():
     # Check if PATH_TO_CLASS_SZ_DATA is already set
     path_to_class_sz_data = os.getenv("PATH_TO_CLASS_SZ_DATA")
 
@@ -40,14 +40,14 @@ def set():
         # Avoid appending 'class_sz_data_directory' multiple times
         if not path_to_class_sz_data.endswith("class_sz_data_directory"):
             path_to_class_sz_data = os.path.join(path_to_class_sz_data, "class_sz_data_directory")
-        print(f"Using PATH_TO_CLASS_SZ_DATA: {path_to_class_sz_data}")
+        # print(f"Using PATH_TO_CLASS_SZ_DATA: {path_to_class_sz_data}")
 
         # Check if the directory exists; if not, fall back to default
         if not os.path.exists(path_to_class_sz_data):
             print(f"Directory {path_to_class_sz_data} does not exist. Falling back to default path.")
             path_to_class_sz_data = None
     else:
-        print("PATH_TO_CLASS_SZ_DATA not set.")
+        print("PATH_TO_CLASS_SZ_DATA not set. Setting it now...")
 
     # If no valid path is set or if the path didn't exist, fall back to the default
     if not path_to_class_sz_data:
@@ -57,15 +57,15 @@ def set():
 
     # Now check if the class_sz_data_directory directory exists and contains the expected repositories
     if os.path.exists(path_to_class_sz_data) and check_repos_in_dir(path_to_class_sz_data):
-        print(f"Found class_sz_data_directory directory with all repositories at: {os.path.realpath(path_to_class_sz_data)}")
+        # print(f"Found class_sz_data_directory directory with all repositories at: {os.path.realpath(path_to_class_sz_data)}")
         
         # Set the environment variable if it's not already set
         current_path = os.getenv("PATH_TO_CLASS_SZ_DATA")
         if current_path != path_to_class_sz_data:
-            print("PATH_TO_CLASS_SZ_DATA is not correctly set. Setting it now...")
+            # print("PATH_TO_CLASS_SZ_DATA is not correctly set. Setting it now...")
             set_class_sz_data_env(path_to_class_sz_data)
-        else:
-            print("PATH_TO_CLASS_SZ_DATA is already correctly set.")
+        # else:
+        #     print("PATH_TO_CLASS_SZ_DATA is already correctly set.")
     else:
         print("--> class_sz_data_directory directory or repositories not found. Cloning repositories in your system!")
 
