@@ -16,5 +16,5 @@ GitHub = "https://github.com/CLASS-SZ"
 
 
 [tool.setuptools.packages.find]
-where = ["main"]
+where = ["."]
 

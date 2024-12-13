@@ -3,3 +3,5 @@
 build
 get_cosmopower_emus.egg-info
 main/__pycache__
+dist/*
+__pycache__
